@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.notfound__container {
+  @apply w-full min-h-screen mx-auto flex flex-col items-center bg-zinc-900;
+}
+
+.notfound__img {
+  @apply w-[33rem] mt-20 mb-4;
+}
+
+.notfound__link {
+  @apply w-[33rem] text-3xl flex flex-col items-center text-gray-50 transition-all duration-150 ease-in-out;
+}
+
+.notfound__link:hover {
+  @apply scale-105;
+}

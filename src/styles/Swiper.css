@@ -1,0 +1,60 @@
+.swiper {
+  width: 1200px;
+  height: 500px;
+}
+.slide-content {
+  position: relative;
+}
+.slider-text {
+  position: absolute;
+  top: 380px;
+  text-align: center;
+  color: #fff; /* Text color */
+}
+.slider-text h1 {
+  margin-left: 40px;
+  font-size: 40px;
+}
+.slider-text p {
+  margin-right: 310px;
+  font-size: 20px;
+}
+.swiper-continer {
+  width: 70%;
+  margin: 0 auto;
+}
+.slider-text img {
+  width: 24px; /* Adjust the size of the additional image */
+  margin-left: 10px; /* Adjust the spacing between the text and the image */
+}
+.swiper-image-container {
+  position: relative;
+  overflow: hidden;
+}
+.swiper-image-container img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensure the image covers the entire container */
+  display: block;
+}
+
+.slide-content {
+  display: flex; /*이거 걸어주면 앞에 폰트가 뜨네요*/
+}
+
+.slide-content p {
+  position: absolute;
+  color: rgb(23, 22, 22); /* 텍스트 색상 설정 */
+  font-size: 60px; /* 텍스트 크기 설정 */
+  text-align: center;
+}
+.profile-info {
+  display: flex;
+  align-items: center;
+}
+
+.profile-info p {
+  margin: 0;
+  margin-right: 5px;
+  margin-left: 40px; /* Adjust the margin as needed */
+}

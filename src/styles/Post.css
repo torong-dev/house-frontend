@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.post__section {
+  @apply flex flex-col pt-12 items-center;
+}
+
+.post__label {
+  @apply relative flex flex-col justify-center items-center mx-auto pt-40 pb-40 pl-32 pr-32 rounded-md border-2 border-dashed border-gray-300 cursor-pointer transition-all duration-200 ease-in-out;
+}
+
+.post__label:hover {
+  @apply scale-105 border-brand;
+}
+
+.post__label .post__preview {
+  @apply absolute flex justify-center items-center w-full h-full mt-2;
+}
+
+.post__label .post__preview__img {
+  @apply max-w-full max-h-full rounded-md;
+}
+
+.post__icon__container {
+  @apply flex justify-center mb-4;
+}
+
+.post__icon {
+  @apply w-20 h-20 text-gray-500;
+}
+
+.post__file {
+  @apply hidden;
+}
+
+.post__text {
+  @apply text-gray-400;
+}
+
+.post__input__container {
+  @apply w-[34rem] flex flex-col mt-12;
+}
+
+.post__input__title {
+  @apply w-full h-20 mb-4 p-2 text-4xl outline-none border-b bg-gray-50;
+}
+
+.post__textarea__content {
+  @apply w-full h-96 p-2 text-lg outline-none resize-none bg-gray-50;
+}
+
+.post__btn__container {
+  @apply w-[80rem] p-8 flex justify-end;
+}
+
+.post__btn__temp {
+  @apply w-32 h-12 mr-10 border-2 border-sky-300 rounded-xl;
+}
+
+.post__btn__temp:hover {
+  @apply scale-105;
+}
+
+.post__btn__complete {
+  @apply w-32 h-12 rounded-xl bg-sky-500 px-3.5 py-2.5 text-sm font-semibold text-gray-50 shadow-sm;
+}
+
+.post__btn__complete:hover {
+  @apply scale-105 bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500;
+}

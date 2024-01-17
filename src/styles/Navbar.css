@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navbar__header {
+  @apply max-w-7xl mx-auto;
+}
+
+.navbar__header {
+  @apply flex justify-between border-b border-gray-300 pr-4;
+}
+
+.navbar__title {
+  @apply flex items-center text-4xl text-brand;
+}
+
+.navbar__logo {
+  @apply h-20 -ml-3 -mr-4;
+}
+
+.navbar__nav {
+  @apply flex items-center gap-8;
+}
+
+.navbar__btn {
+  @apply flex transition-all duration-75 ease-in;
+}
+
+.navbar__btn:hover {
+  @apply scale-110;
+}

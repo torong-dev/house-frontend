@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.footer__section {
+  @apply max-w-7xl mx-auto;
+}
+
+.footer__section {
+  @apply border-t border-gray-300 p-2;
+}
+
+.footer__links {
+  @apply flex justify-center gap-4 p-4 text-3xl;
+}
+
+.footer__link {
+  @apply flex transition-all duration-150 ease-in;
+}
+
+.footer__link:hover {
+  @apply scale-125 text-brand;
+}
+
+.footer__copyright {
+  @apply flex justify-center items-center text-xs text-center text-gray-500;
+}

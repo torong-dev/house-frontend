@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.home__container {
+  @apply max-w-7xl mx-auto;
+}
+
+.Cards {
+  @apply flex flex-wrap;
+}
+
+.font-h1 {
+  @apply p-2 text-4xl;
+}
+
+.home__grid__item {
+  @apply w-96 h-96 shadow-md rounded-xl overflow-hidden;
+}
+
+.home__grid__item:hover .home__grid__img {
+  @apply scale-110;
+}
+
+.home__grid__item:hover .home__grid__title,
+.home__grid__item:hover .home__grid__content {
+  @apply text-gray-400;
+}
+
+.home__grid__img__container {
+  @apply overflow-hidden;
+}
+
+.home__grid__img {
+  @apply bg-auto rounded-t-xl transition-all duration-300 ease-in-out;
+}
+
+.home__grid__title {
+  @apply p-2 text-xl;
+}
+
+.home__grid__content {
+  @apply pl-2 pr-2;
+}
+
+.home__grid__container {
+  @apply max-w-7xl mx-auto mt-20 mb-16 flex flex-wrap justify-start gap-16;
+}
+
+.home__grid__title__container {
+  @apply flex flex-row justify-between items-center;
+}
+
+.home__grid__count {
+  @apply p-2 text-sm text-gray-500;
+}
