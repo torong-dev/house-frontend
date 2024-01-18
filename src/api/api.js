@@ -10,6 +10,7 @@ export const fetchInteriorData = async () => {
     const response = await instance.get("/api/interior");
     return response.data;
   } catch (error) {
+    console.log("Error fetching interior dtat: ", error);
     throw error;
   }
 };
