@@ -4,11 +4,12 @@ import "../styles/Post.css";
 import { v4 as uuidv4 } from "uuid";
 import { usePostContext } from "../components/PostContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Post() {
-  const [img, setImg] = useState(null);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [interiorImg, setInteriorImg] = useState(null);
+  const [interiorTitle, setInteriorTitle] = useState("");
+  const [interiorContents, seInteriorContents] = useState("");
   const { addPost } = usePostContext(); // PostContext를 사용하기 위한 커스텀 훅
   const navigate = useNavigate();
 
@@ -61,26 +62,8 @@ export default function Post() {
     });
   };
 
-  // 이미지 업로드를 위한 uploadImg 함수
-  // const uploadImg = async (imgFile) => {
-  //   const formData = new FormData();
-  //   formData.append("image", imgFile);
-
-  //   const response = await fetch("https://searcheshouse.net/api/interior", {
-  //     method: "POST",
-  //     body: formData,
-  //   });
-
-  //   if (!response.ok) {
-  //     throw new Error("Image upload failed");
-  //   }
-
-  //   const responseData = await response.json();
-  //   return responseData.imgURL;
-  // };
-
   const handleImgChange = (e) => {
-    setImg(e.target.files[0]);
+    setInteriorImg(e.target.files[0]);
   };
 
   const handleDrop = (e) => {
@@ -90,7 +73,7 @@ export default function Post() {
       const droppedImg = e.dataTransfer.items[0];
       if (droppedImg.kind === "file" && droppedImg.type.startsWith("image/")) {
         const file = droppedImg.getAsFile();
-        setImg(file);
+        setInteriorImg(file);
       }
     }
   };
@@ -99,46 +82,60 @@ export default function Post() {
     e.preventDefault();
   };
 
-  const handleChangeTitle = (e) => setTitle(e.target.value);
+  const handleChangeTitle = (e) => setInteriorTitle(e.target.value);
 
-  const handleChangeContent = (e) => setContent(e.target.value);
+  const handleChangeContent = (e) => seInteriorContents(e.target.value);
 
-  // 네트워크 통신
-  // const handleCompleteBtnClick = async () => {
-  //   if (title.trim().length === 0 || !img) return;
-
-  //   const imgURL = await uploadImg(img);
-
-  //   const newItem = {
-  //     id: uuidv4(),
-  //     img: imgURL,
-  //     title,
-  //     content,
-  //   };
-
-  //   addPost(newItem);
-  //   setImg(null);
-  //   setTitle("");
-  //   setContent("");
-  // };
-
+  // 완료버튼 클릭 시, POST 요청
   const handleCompleteBtnClick = async () => {
-    if (title.trim().length === 0 || !img) return;
+    if (interiorTitle.trim().length === 0 || !interiorImg) return;
 
-    const resizedImgBlob = await resizeImg(img);
+    // 사용자가 로그인 했는지 확인
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // 로그인하지 않은 경우, 로그인 페이지로 리다이렉트
+      navigate("/login");
+      return;
+    }
 
-    const newItem = {
-      id: uuidv4(),
-      img: URL.createObjectURL(resizedImgBlob), // 이미지 크기 조정
-      title,
-      content,
-    };
+    // 이미지 크기 조절
+    const resizedImgBlob = await resizeImg(interiorImg);
 
-    addPost(newItem);
-    setImg(null);
-    setTitle("");
-    setContent("");
-    navigate("/");
+    // FormData를 사용하여 이미지와 데이터를 서버에 전송
+    const formData = new FormData();
+    formData.append("interiorImg", resizedImgBlob);
+    formData.append("interiorTitle", interiorTitle);
+    formData.append("interiorContents", interiorContents);
+
+    // 백엔드에 POST 요청 보내기
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/interior`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      // 새로운 데이터 업데이트
+      const newItem = {
+        interiorId: uuidv4(),
+        interiorImg: URL.createObjectURL(resizedImgBlob), // 이미지 크기 조정
+        interiorTitle,
+        interiorContents,
+      };
+
+      addPost(newItem);
+      setInteriorImg(null);
+      setInteriorTitle("");
+      seInteriorContents("");
+      navigate("/");
+    } catch (error) {
+      console.error("인테리어 데이터 전송 중 오류: ", error);
+    }
   };
 
   return (
@@ -155,11 +152,11 @@ export default function Post() {
         <p className="post__text">
           드래그 앤 드롭으로 커버 사진을 업로드해주세요.
         </p>
-        {img && (
+        {interiorImg && (
           <div className="post__preview">
             <img
               className="post__preview__img"
-              src={URL.createObjectURL(img)}
+              src={URL.createObjectURL(interiorImg)}
               alt="preview"
             />
           </div>
@@ -170,14 +167,14 @@ export default function Post() {
           className="post__input__title"
           type="text"
           placeholder="제목을 입력해주세요."
-          value={title}
+          value={interiorTitle}
           onChange={handleChangeTitle}
         />
         <textarea
           className="post__textarea__content"
           type="text"
           placeholder="내용을 입력해주세요."
-          value={content}
+          value={interiorContents}
           onChange={handleChangeContent}
         />
       </div>
