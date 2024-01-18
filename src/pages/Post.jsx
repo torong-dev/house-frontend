@@ -9,7 +9,7 @@ import axios from "axios";
 export default function Post() {
   const [interiorImg, setInteriorImg] = useState(null);
   const [interiorTitle, setInteriorTitle] = useState("");
-  const [interiorContents, seInteriorContents] = useState("");
+  const [interiorContents, setInteriorContents] = useState("");
   const { addPost } = usePostContext(); // PostContext를 사용하기 위한 커스텀 훅
   const navigate = useNavigate();
 
@@ -84,11 +84,10 @@ export default function Post() {
 
   const handleChangeTitle = (e) => setInteriorTitle(e.target.value);
 
-  const handleChangeContent = (e) => seInteriorContents(e.target.value);
+  const handleChangeContent = (e) => setInteriorContents(e.target.value);
 
   // 완료버튼 클릭 시, POST 요청
   const handleCompleteBtnClick = async () => {
-    console.log("handleCompleteBtnClick 시작");
     if (interiorTitle.trim().length === 0 || !interiorImg) return;
 
     // 사용자가 로그인 했는지 확인
@@ -132,12 +131,11 @@ export default function Post() {
       addPost(newItem);
       setInteriorImg(null);
       setInteriorTitle("");
-      seInteriorContents("");
+      setInteriorContents("");
       navigate("/");
     } catch (error) {
       console.error("인테리어 데이터 전송 중 오류: ", error);
     }
-    console.log("handleCompleteBtnClick 끝");
   };
 
   return (
