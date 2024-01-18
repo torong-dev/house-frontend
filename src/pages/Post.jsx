@@ -92,11 +92,6 @@ export default function Post() {
 
     // 사용자가 로그인 했는지 확인
     const token = localStorage.getItem("token");
-    if (!token) {
-      // 로그인하지 않은 경우, 로그인 페이지로 리다이렉트
-      navigate("/login");
-      return;
-    }
 
     // 이미지 크기 조절
     const resizedImgBlob = await resizeImg(interiorImg);
