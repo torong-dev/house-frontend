@@ -26,11 +26,7 @@ export const Slider = () => {
       onSwiper={(swiper) => console.log(swiper)}
     >
       <SwiperSlide>
-        <img
-          src="http://erang-design.co.kr/wp-content/uploads/2015/09/24-900x400.jpg"
-          width="1200px"
-          alt=""
-        ></img>
+        <img src="imgs/interior/1.jpg" width="1200px" alt=""></img>
         <div className="slider-text">
           <h1>엔티크 함의 시작! "2조의 조명 인테리어"</h1>
           <div className="profile-info">
@@ -40,11 +36,7 @@ export const Slider = () => {
         </div>
       </SwiperSlide>
       <SwiperSlide>
-        <img
-          src="https://loremflickr.com/cache/resized/8236_8483710936_0d8e972a56_h_900_400_nofilter.jpg"
-          width="1200px"
-          alt=""
-        ></img>
+        <img src="imgs/interior/2.jpg" width="1200px" alt=""></img>
         <div className="slider-text">
           <h1>실용적인 "2조의 사다리"</h1>
           <div className="profile-info">
@@ -54,11 +46,7 @@ export const Slider = () => {
         </div>
       </SwiperSlide>
       <SwiperSlide>
-        <img
-          src="https://t1.daumcdn.net/thumb/R920x0/?fname=http://zipdeco.co.kr/upload/2019/11/05/EDITOR_201911050142510760_2nq48"
-          width="1200px"
-          alt=""
-        ></img>
+        <img src="imgs/interior/3.jpg" width="1200px" alt=""></img>
         <div className="slider-text">
           <h1>깔끔한 화장실 인테리어 "2조의 인테리어"</h1>
           <div className="profile-info">
