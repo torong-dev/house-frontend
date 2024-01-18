@@ -88,6 +88,7 @@ export default function Post() {
 
   // 완료버튼 클릭 시, POST 요청
   const handleCompleteBtnClick = async () => {
+    console.log("handleCompleteBtnClick 시작");
     if (interiorTitle.trim().length === 0 || !interiorImg) return;
 
     // 사용자가 로그인 했는지 확인
@@ -136,6 +137,7 @@ export default function Post() {
     } catch (error) {
       console.error("인테리어 데이터 전송 중 오류: ", error);
     }
+    console.log("handleCompleteBtnClick 끝");
   };
 
   return (
